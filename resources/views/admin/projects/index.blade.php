@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    {{-- <th>User</th> --}}
                     <th>Title</th>
                     <th>Languages</th>
                     <th>Actions</th>
@@ -22,6 +23,7 @@
                 @foreach ($projects as $project)
                     <tr>
                         <td>{{ $project->id }}</td>
+                        {{-- <td>{{ $type->user ? $type->user->name : 'Nessun Utente' }}</td> --}}
                         <td>{{ $project->title }}</td>
                         <td>{{ $project->languages }}</td>
                         <td>

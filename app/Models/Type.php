@@ -13,6 +13,11 @@ class Type extends Model
     {
         return $this->hasMany(project::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 
 
