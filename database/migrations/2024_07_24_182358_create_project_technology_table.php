@@ -16,11 +16,11 @@ return new class extends Migration
 
             //foreign type
 
-            $table->foreignId('project_id')->constrained('projects');
+            $table->foreignId('project_id')->constrained('projects')->cascadeOnDelete();
 
             //foreign tech
 
-            $table->foreignId('technology_id')->constrained('technologies');
+            $table->foreignId('technology_id')->constrained('technologies')->cascadeOnDelete();
 
 
 
