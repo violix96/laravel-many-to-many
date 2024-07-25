@@ -8,6 +8,18 @@
             <strong>Type:</strong>
             {{ $project->type ? $project->type->title : 'tipo non definito' }}
         </p>
+
+        <h3>Technologies Used:</h3>
+        @if ($project->technologies->isEmpty())
+            <p>No technologies used for this project.</p>
+        @else
+            <ul>
+                @foreach ($project->technologies as $technology)
+                    <li>{{ $technology->title }}</li>
+                @endforeach
+            </ul>
+        @endif
+
         <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
         <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline-block;">
             @csrf

@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
         // return view('admin.projects.show', compact('project'));
 
-        $project = Project::with('technologies');
+        // $projects = Project::all();
         return view('admin.projects.show', compact('project'));
     }
 
