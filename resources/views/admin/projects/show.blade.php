@@ -9,9 +9,9 @@
             {{ $project->type ? $project->type->title : 'tipo non definito' }}
         </p>
 
-        <h3>Technologies Used:</h3>
+        <h3>Tecnologie usate :</h3>
         @if ($project->technologies->isEmpty())
-            <p>No technologies used for this project.</p>
+            <p>Nessuna tecnologia utilizzata per questo progetto</p>
         @else
             <ul>
                 @foreach ($project->technologies as $technology)
