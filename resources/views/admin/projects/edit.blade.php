@@ -2,34 +2,36 @@
 
 @section('content')
     <div class="container font">
-        <h1>Modifica progetto</h1>
+        <h1 class="text-center">Modifica progetto</h1>
         <form action="{{ route('projects.update', $project->id) }}" method="POST">
             @csrf
             @method('PATCH')
             <div class="form-group">
                 <label for="title">Titolo</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ $project->title }}" required>
+                <input type="text" name="title" id="title" class="form-control"
+                    value="{{ old('title', $project->title) }}" required>
             </div>
             <div class="form-group">
                 <label for="description">Descrizione</label>
-                <textarea name="description" id="description" class="form-control">{{ $project->description }}</textarea>
+                <textarea name="description" id="description" class="form-control">{{ old('description', $project->description) }}</textarea>
             </div>
             <div class="form-group">
                 <label for="languages">Linguaggi</label>
-                <input type="text" name="languages" id="languages" class="form-control" value="{{ $project->languages }}"
-                    required>
+                <input type="text" name="languages" id="languages" class="form-control"
+                    value="{{ old('languages', $project->languages) }}" required>
             </div>
             <div class="form-group">
                 <label for="slug">Slug</label>
-                <input type="text" name="slug" id="slug" class="form-control" value="{{ $project->slug }}"
-                    required>
+                <input type="text" name="slug" id="slug" class="form-control"
+                    value="{{ old('slug', $project->slug) }}" required>
             </div>
             <div class="form-group">
-                <label for="description">Categoria</label>
-                <select class="form-select" aria-label="Default select example" name="type_id">
+                <label for="type_id">Categoria</label>
+                <select class="form-select" name="type_id" required>
                     <option value="">Seleziona la categoria</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}">
+                        <option value="{{ $type->id }}"
+                            {{ old('type_id', $project->type_id) == $type->id ? 'checked' : '' }}>
                             {{ $type->title }}
                         </option>
                     @endforeach
@@ -42,7 +44,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="technologies[]"
                                 value="{{ $technology->id }}" id="technology-{{ $technology->id }}"
-                                {{ in_array($technology->id, $project->technologies->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}>
                             <label class="form-check-label" for="technology-{{ $technology->id }}">
                                 {{ $technology->title }}
                             </label>

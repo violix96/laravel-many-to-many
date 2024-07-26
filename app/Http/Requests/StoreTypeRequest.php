@@ -23,14 +23,17 @@ class StoreTypeRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'type_id' => ['required', 'integer', 'exists:type,id']
+            'type_id' => ['required', 'integer', 'exists:types,id'],
+            'technologies' => ['nullable', 'exists:technologies,id'],
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
-            'type_id' => 'Il campo type_id è obbligatorio e deve essere specificato.',
+            'type_id.required' => 'Il campo type_id è obbligatorio e deve essere specificato.',
+            'type_id.integer' => 'Il campo type_id deve essere un numero intero.',
+            'type_id.exists' => 'Il campo type_id deve esistere nella tabella types.',
         ];
     }
 }

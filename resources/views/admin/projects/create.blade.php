@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container font">
-        <h1>Crea progetto</h1>
+        <h1 class="text-center">Crea progetto</h1>
         <form action="{{ route('projects.store') }}" method="POST">
             @csrf
             <div class="form-group">

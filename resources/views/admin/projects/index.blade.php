@@ -10,9 +10,9 @@
                 <a href="{{ route('projects.create') }}" class="btn btn-primary mt-3 mb-3">Crea un nuovo progetto</a>
             </div>
         </div>
-        @if (session('success'))
+        @if (session('message'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                {{ session('message') }}
             </div>
         @endif
         <table class="table font">

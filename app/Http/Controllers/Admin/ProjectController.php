@@ -74,7 +74,15 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
+        // elimina le relazioni con le tecnologie
+        $project->technologies()->detach();
+
+        // salva il titolo del progetto prima di eliminarlo
+        $projectTitle = $project->title;
+
+        // elimina il progetto
         $project->delete();
-        return redirect()->route('projects.index');
+
+        return redirect()->route('projects.index')->with('message', $projectTitle . ' - Progetto cancellato correttamente');
     }
 }
