@@ -22,16 +22,29 @@
                 <input type="text" name="slug" id="slug" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="description">Type</label>
+                <label for="description">Categoria</label>
                 <select class="form-select" aria-label="Default select example" name="type_id">
-                    <option value="">Seleziona il type</option>
+                    <option value="">Seleziona la categoria</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">
                             {{ $type->title }}
                         </option>
                     @endforeach
                 </select>
-
+            </div>
+            <div class="form-group">
+                <label for="technologies">Tecnologie</label>
+                <div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="technologies[]"
+                                value="{{ $technology->id }}" id="technology-{{ $technology->id }}">
+                            <label class="form-check-label" for="technology-{{ $technology->id }}">
+                                {{ $technology->title }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Crea</button>
         </form>

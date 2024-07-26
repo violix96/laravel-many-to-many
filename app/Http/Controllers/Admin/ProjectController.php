@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\StoreTypeRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -20,54 +19,55 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'languages' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'type_id' => 'required|exists:types,id',
+            'technologies' => 'nullable|array',
+            'technologies.*' => 'exists:technologies,id'
         ]);
-        // dd($data);
-        Project::create($data);
+
+        $project = Project::create($data);
+        $project->technologies()->sync($request->input('technologies', []));
 
         return redirect()->route('projects.index');
     }
 
     public function show(Project $project)
     {
-
-        // return view('admin.projects.show', compact('project'));
-
-        // $projects = Project::all();
+        $project->load('type', 'technologies');
         return view('admin.projects.show', compact('project'));
     }
 
     public function edit(Project $project)
     {
-        $types = Type::all(); // Recupera tutti i tipi di progetto
-        return view('admin.projects.edit', compact('project', 'types')); // Passa i tipi alla vista
+        $types = Type::all();
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
-
 
     public function update(Request $request, Project $project)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'languages' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-
-
+            'type_id' => 'required|exists:types,id',
+            'technologies' => 'nullable|array',
+            'technologies.*' => 'exists:technologies,id'
         ]);
 
-        $project->update($request->all());
+        $project->update($data);
+        $project->technologies()->sync($request->input('technologies', []));
 
         return redirect()->route('projects.index');
     }
@@ -75,7 +75,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-
         return redirect()->route('projects.index');
     }
 }
