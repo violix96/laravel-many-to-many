@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container font">
         <h1>Crea progetto</h1>
         <form action="{{ route('projects.store') }}" method="POST">
             @csrf

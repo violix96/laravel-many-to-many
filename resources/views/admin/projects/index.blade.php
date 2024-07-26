@@ -2,14 +2,20 @@
 
 @section('content')
     <div class="container">
-        <h1>Lista dei progetti</h1>
-        <a href="{{ route('projects.create') }}" class="btn btn-primary mt-3 mb-3">Crea un nuovo progetto</a>
+        <div class="row">
+            <div class="col-9">
+                <h1 class="font">Lista dei progetti</h1>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+                <a href="{{ route('projects.create') }}" class="btn btn-primary mt-3 mb-3">Crea un nuovo progetto</a>
+            </div>
+        </div>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
-        <table class="table">
+        <table class="table font">
             <thead>
                 <tr>
                     <th>ID</th>

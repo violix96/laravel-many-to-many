@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container bg-primary py-3 mt-5" style="color: white">
-        <h1>{{ $project->title }}</h1>
+    <div class="container font bg-primary py-3 mt-5" style="color: white">
+        <h1 class="">{{ $project->title }}</h1>
         <p>{{ $project->description }}</p>
-        <p class="text-white">
+        <p class="text-white ">
             <strong>Type:</strong>
             {{ $project->type ? $project->type->title : 'tipo non definito' }}
         </p>
