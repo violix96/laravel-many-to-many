@@ -25,6 +25,7 @@ class StoreTypeRequest extends FormRequest
             'title' => ['required'],
             'type_id' => ['required', 'integer', 'exists:types,id'],
             'technologies' => ['nullable', 'exists:technologies,id'],
+            'cover_image' => ['nullable', 'image', 'max:2048']
         ];
     }
 

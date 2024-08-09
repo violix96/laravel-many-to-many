@@ -15,6 +15,7 @@ class Project extends Model
         'languages',
         'slug',
         'type_id',
+        'cover_image',
     ];
 
     public function type() // 1 categoria / singolare 

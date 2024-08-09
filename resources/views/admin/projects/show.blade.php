@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container font bg-primary py-3 mt-5" style="color: white">
+    <div class="container bg-success font py-3 mt-5" style="color: white">
         <h1 class="">{{ $project->title }}</h1>
         <p>{{ $project->description }}</p>
         <p class="text-white ">
@@ -19,6 +19,18 @@
                 @endforeach
             </ul>
         @endif
+
+        <h3>Foto:</h3>
+        <div class="mt-3 mb-3">
+            @if ($project->cover_image)
+                <img src="{{ asset('storage/' . $project->cover_image) }}" alt="Immagine del progetto {{ $project->title }}"
+                    class="img-fluid">
+            @else
+                <p>Immagine non disponibile</p>
+            @endif
+        </div>
+
+
 
         <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning">Modifica</a>
         <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline-block;">

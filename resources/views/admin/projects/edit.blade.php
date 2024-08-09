@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container font">
+    <div class="container font bg-success mt-5 ">
         <h1 class="text-center">Modifica progetto</h1>
         <form action="{{ route('projects.update', $project->id) }}" method="POST">
             @csrf

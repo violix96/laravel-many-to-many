@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container font">
+    <div class="container font bg-success mt-5">
         <h1 class="text-center">Crea progetto</h1>
-        <form action="{{ route('projects.store') }}" method="POST">
+        <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Titolo</label>
@@ -46,7 +46,13 @@
                     @endforeach
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Crea</button>
+
+            <div>
+                <label for="cover-image" class="form-label">Large file input example</label>
+                <input class="form-control form-control-lg" id="cover-image" type="file" name="cover_image">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 mb-3">Crea</button>
         </form>
     </div>
 @endsection
