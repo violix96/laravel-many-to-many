@@ -74,8 +74,15 @@ class ProjectController extends Controller
             'slug' => 'required|string|max:255',
             'type_id' => 'required|exists:types,id',
             'technologies' => 'nullable|array',
-            'technologies.*' => 'exists:technologies,id'
+            'technologies.*' => 'exists:technologies,id',
+            'cover_image' => 'nullable|image|max:2048'
+
         ]);
+
+        if ($request->hasFile('cover_image')) {
+            // Salva l'immagine nella cartella 'uploads' sotto 'storage/app/public'
+            $data['cover_image'] = $request->file('cover_image')->store('uploads', 'public');
+        }
 
         $project->update($data);
         $project->technologies()->sync($request->input('technologies', []));

@@ -48,7 +48,7 @@
             </div>
 
             <div>
-                <label for="cover-image" class="form-label">Large file input example</label>
+                <label for="cover-image" class="form-label">Carica un' immagine</label>
                 <input class="form-control form-control-lg" id="cover-image" type="file" name="cover_image">
             </div>
 

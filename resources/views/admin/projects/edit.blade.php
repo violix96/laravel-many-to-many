@@ -3,7 +3,7 @@
 @section('content')
     <div class="container font bg-success mt-5 ">
         <h1 class="text-center">Modifica progetto</h1>
-        <form action="{{ route('projects.update', $project->id) }}" method="POST">
+        <form action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="form-group">
@@ -51,6 +51,12 @@
                         </div>
                     @endforeach
                 </div>
+
+                <div>
+                    <label for="cover-image" class="form-label">Carica un' immagine</label>
+                    <input class="form-control form-control-lg" id="cover-image" type="file" name="cover_image">
+                </div>
+
             </div>
             <button type="submit" class="btn btn-primary mt-3">Modifica</button>
         </form>
